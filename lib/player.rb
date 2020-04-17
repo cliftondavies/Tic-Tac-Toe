@@ -30,3 +30,5 @@ class Player
     values << value
   end
 end
+
+# rubocop:enable Style/ClassVars

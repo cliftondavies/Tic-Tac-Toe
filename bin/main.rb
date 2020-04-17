@@ -97,3 +97,5 @@ loop do
   '
   sleep 6
 end
+
+# rubocop:enable Metrics/BlockLength
