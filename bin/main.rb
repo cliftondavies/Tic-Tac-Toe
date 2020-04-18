@@ -46,11 +46,11 @@ loop do
 
   # Play Game
   plays = Player.list_plays
-  no_of_moves = 1
-  while no_of_moves < 4
+  no_of_moves = 0
+  until game.outcome == 'win' || !board.position.value?(' ')
     2.times do |player_no|
       puts '------------------------------'
-      puts ">> #{names[player_no]}: Please Enter Move #{no_of_moves}. [Value between 1-9]<<"
+      puts ">> #{names[player_no]}: Please Enter Move #{no_of_moves + 1}. [Value between 1-9]<<"
       value = gets.to_i
       puts ' '
       until value.between?(1, 9) && plays[0].index(value).nil? && plays[1].index(value).nil?
@@ -67,9 +67,10 @@ loop do
       puts '-----------------------------
       '
       puts game.check(player_no) if no_of_moves >= 3 && TicTacToe::WIN.index(plays[player_no].sort)
-      break if game.outcome == 'win'
+      break if game.outcome == 'win' || no_of_moves == 8
+      no_of_moves += 1
     end
-    no_of_moves += 1
+    #break unless board.position[9].nil?
   end
   puts "Oh noo...It's a TIE!\n" if game.outcome == 'draw'
   sleep 3
