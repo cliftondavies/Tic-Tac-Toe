@@ -66,13 +66,13 @@ loop do
       end
       player_no.zero? ? player1.play(value) : player2.play(value)
       board.update(value, player_no)
-      puts '-----------------------------'
-      puts "|    #{board.position[1]}    |   #{board.position[2]}    |   #{board.position[3]}    |"
-      puts "|    #{board.position[4]}    |   #{board.position[5]}    |   #{board.position[6]}    |"
-      puts "|    #{board.position[7]}    |   #{board.position[8]}    |   #{board.position[9]}    |"
-      puts '-----------------------------
+      puts '-------------------------------'
+      puts "|    #{board.position[1]}    |    #{board.position[2]}    |    #{board.position[3]}    |"
+      puts "|    #{board.position[4]}    |    #{board.position[5]}    |    #{board.position[6]}    |"
+      puts "|    #{board.position[7]}    |    #{board.position[8]}    |    #{board.position[9]}    |"
+      puts '-------------------------------
       '
-      puts game.check(player_no) if no_of_moves >= 2 && TicTacToe::WIN.index(plays[player_no].sort)
+      puts game.win(player_no) if no_of_moves >= 2 && game.check(player_no)
       break if game.outcome == 'win' || no_of_moves == 8
       no_of_moves += 1
     end

@@ -9,6 +9,13 @@ class TicTacToe
   end
 
   def check(player_no)
+    WIN.any? do |item|
+      union = item & Player.list_plays[player_no]
+      union.size == 3
+    end
+  end
+
+  def win(player_no)
     @outcome = 'win'
     message = "***Congrats, #{Player.list_names[player_no]}. You WON!!!***\n"
     message
