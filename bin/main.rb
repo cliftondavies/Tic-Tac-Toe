@@ -22,7 +22,7 @@ loop do
     if choice == 'exit'
       exit
     else
-      puts 'Typo Error. Please try again'
+      puts 'Typo Error! Please try again.'
       choice = gets.chomp.downcase
     end
   end
@@ -39,7 +39,13 @@ loop do
   # Get Player Names
   2.times do |player_no|
     puts "---Player #{player_no + 1}: Please enter your name---"
-    player_no.zero? ? player1 = Player.new(gets.chomp) : player2 = Player.new(gets.chomp)
+    name = gets.chomp
+    until name.match?(/[A-Za-z]/)
+      puts 'Please enter a valid name!
+      '
+      name = gets.chomp
+    end
+    player_no.zero? ? player1 = Player.new(name) : player2 = Player.new(name)
     puts ' '
   end
   names = Player.list_names
@@ -54,7 +60,7 @@ loop do
       value = gets.to_i
       puts ' '
       until value.between?(1, 9) && plays[0].index(value).nil? && plays[1].index(value).nil?
-        puts value.between?(1, 9) ? 'Move already taken: Try another' : 'Move out of range: Try another'
+        puts value.between?(1, 9) ? 'Move already taken! Try another.' : 'Move out of range! Try another.'
         value = gets.to_i
         puts ' '
       end
@@ -66,11 +72,10 @@ loop do
       puts "|    #{board.position[7]}    |   #{board.position[8]}    |   #{board.position[9]}    |"
       puts '-----------------------------
       '
-      puts game.check(player_no) if no_of_moves >= 3 && TicTacToe::WIN.index(plays[player_no].sort)
+      puts game.check(player_no) if no_of_moves >= 2 && TicTacToe::WIN.index(plays[player_no].sort)
       break if game.outcome == 'win' || no_of_moves == 8
       no_of_moves += 1
     end
-    #break unless board.position[9].nil?
   end
   puts "Oh noo...It's a TIE!\n" if game.outcome == 'draw'
   sleep 3
@@ -88,7 +93,7 @@ loop do
     if choice.match(/no|exit/)
       exit
     else
-      puts "\nTypo Error. Please try again"
+      puts "\nTypo Error! Please try again."
       puts ' '
       choice = gets.chomp.downcase
     end
