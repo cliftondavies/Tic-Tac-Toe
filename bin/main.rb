@@ -74,6 +74,7 @@ loop do
       '
       puts game.win(player_no) if no_of_moves >= 2 && game.check(player_no)
       break if game.outcome == 'win' || no_of_moves == 8
+
       no_of_moves += 1
     end
   end
