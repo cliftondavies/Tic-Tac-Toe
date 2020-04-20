@@ -6,7 +6,7 @@
 
 ## Game Rules
 
-Tic-tac-toe is a game for two players. The objective of the game is to get three in a row, either horizontally, vertically or diagonally. You play on a 3x3 game board. A board with the nine positions numbers as follows:
+Tic-tac-toe is a game for two players. The objective of the game is to get three in a row, either horizontally, vertically or diagonally. You play on a 3x3 game board. A board with the nine positions, numbers as follows:
 
 ![screenshot](https://i.stack.imgur.com/p8t8I.png)
 
