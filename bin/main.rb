@@ -1,70 +1,108 @@
 #!/usr/bin/env ruby
-puts 'Tic Tac Toe'
-value = { 1 => nil, 2 => nil, 3 => nil,
-          4 => nil, 5 => nil, 6 => nil,
-          7 => nil, 8 => nil, 9 => nil }
-board = [[value[1], value[2], value[3]],
-         [value[4], value[5], value[6]],
-         [value[7], value[8], value[9]]]
-win = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7],
-       [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+# rubocop:disable Metrics/BlockLength
 
-# Start or Exit Game
-puts "Type 'Start' to begin a new game or 'Exit' to leave."
-choice = gets.chomp.downcase
-if choice == 'start'
-  puts 'Welcome players, and best of luck!'
-elsif choice == 'exit'
-  exit
-else
-  puts 'Typo Error'
-end
+require_relative '../lib/tictactoe.rb'
+require_relative '../lib/board.rb'
+require_relative '../lib/player.rb'
 
-# Get player names
-player_names = []
-2.times do |player_no|
-  puts "Player #{player_no + 1}: Please enter your name"
-  player_names[player_no] = gets.chomp
-end
+loop do
+  # Initialize Game
+  puts "
+  X-X-X-X-X-X-X
+   TIC TAC TOE
+  O-O-O-O-O-O-0
+  -------------
+  GAME MENU
+  >>> Enter 'Start' to begin a New Game
 
-# Get player moves
-player_moves = [[], []]
-outcome = 'draw'
-no_of_moves = 1
-while no_of_moves < 4
-  2.times do |player_no|
-    puts "#{name[player_no]}: Please play #{no_of_moves}st move"
-    move = gets.chomp.to_i
-    if move.between?(1, 9) && player_moves[0].index(move).nil? && player_moves[1].index(move).nil?
-      player_moves[player_no] << move
-      # Display current board between moves
-      value[move] = if player_no.even?
-                      'X'
-                    else
-                      'O'
-                    end
-      3.times { |row| puts " #{board[row][0]} | #{board[row][1]} | #{board[row][2]} " }
-      if win.index(player_moves[player_no].sort)
-        outcome = 'win'
-        return "Congrats, #{player_names[player_no]}. You WON!"
-      end
+  >>> Enter 'Exit' to Leave.
+  "
+  choice = gets.chomp.downcase
+  until choice == 'start'
+    if choice == 'exit'
+      exit
     else
-      move.between?(1..9) ? 'Move already taken: Try another' : 'Move out of range: Try another'
-      retry
+      puts 'Typo Error! Please try again.'
+      choice = gets.chomp.downcase
     end
   end
-  no_of_moves += 1
-end
-puts "It's a TIE!" if outcome == 'draw'
+  puts '
+  | Welcome players, and best of luck! |
+  --------------------------------------
+  '
+  game = TicTacToe.new
+  board = Board.new
+  Player.reset
+  player1 = nil
+  player2 = nil
 
-# Check if players would like a rematch.
-puts 'GAME OVER!'
-puts "Type 'Yes' to play again or 'No' to exit."
-choice = gets.chomp.downcase
-if choice == 'yes'
-  start_game
-elsif choice == 'no'
-  exit
-else
-  puts 'Typo Error'
+  # Get Player Names
+  2.times do |player_no|
+    puts "---Player #{player_no + 1}: Please enter your name---"
+    name = gets.chomp
+    until name.match?(/[A-Za-z]/)
+      puts 'Please enter a valid name!
+      '
+      name = gets.chomp
+    end
+    player_no.zero? ? player1 = Player.new(name) : player2 = Player.new(name)
+    puts ' '
+  end
+  names = Player.list_names
+
+  # Play Game
+  plays = Player.list_plays
+  no_of_moves = 0
+  until game.outcome == 'win' || !board.position.value?(' ')
+    2.times do |player_no|
+      puts '------------------------------'
+      puts ">> #{names[player_no]}: Please Enter Move #{no_of_moves + 1}. [Value between 1-9]<<"
+      value = gets.to_i
+      puts ' '
+      until value.between?(1, 9) && plays[0].index(value).nil? && plays[1].index(value).nil?
+        puts value.between?(1, 9) ? 'Move already taken! Try another.' : 'Move out of range! Try another.'
+        value = gets.to_i
+        puts ' '
+      end
+      player_no.zero? ? player1.play(value) : player2.play(value)
+      board.update(value, player_no)
+      puts '-------------------------------'
+      puts "|    #{board.position[1]}    |    #{board.position[2]}    |    #{board.position[3]}    |"
+      puts "|    #{board.position[4]}    |    #{board.position[5]}    |    #{board.position[6]}    |"
+      puts "|    #{board.position[7]}    |    #{board.position[8]}    |    #{board.position[9]}    |"
+      puts '-------------------------------
+      '
+      puts game.win(player_no) if no_of_moves >= 2 && game.check(player_no)
+      break if game.outcome == 'win' || no_of_moves == 8
+
+      no_of_moves += 1
+    end
+  end
+  puts "Oh noo...It's a TIE!\n" if game.outcome == 'draw'
+  sleep 3
+
+  # End Game and Check if players would like a rematch
+  puts "-----------------------
+  GAME OVER!
+  -----------------------------
+  >>> Enter 'Yes' to play again
+
+  >>> 'No' to exit."
+  puts ' '
+  choice = gets.chomp.downcase
+  until choice == 'yes'
+    if choice.match(/no|exit/)
+      exit
+    else
+      puts "\nTypo Error! Please try again."
+      puts ' '
+      choice = gets.chomp.downcase
+    end
+  end
+  puts '-----------------------------------------------------END---------------------------------------------------
+                                             Loading New Game...
+  '
+  sleep 6
 end
+
+# rubocop:enable Metrics/BlockLength
