@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 # rubocop:disable Metrics/BlockLength
 
-require_relative '../lib/tictactoe.rb'
-require_relative '../lib/board.rb'
-require_relative '../lib/player.rb'
+require './lib/tictactoe.rb'
+require './lib/board.rb'
+require './lib/player.rb'
 
 loop do
   # Initialize Game
