@@ -6,7 +6,7 @@ describe TicTacToe do
     context 'when a player has 3 matching in a row' do
       it 'returns true' do
         tictactoe = TicTacToe.new
-        tictactoe.plays = [[1, 2, 3], [4, 5, 9]]
+        @@plays = [[1, 2, 3], [4, 5, 9]]
         expect(tictactoe.check(0)).to eql(true)
       end
     end
@@ -14,7 +14,7 @@ describe TicTacToe do
     context 'when a player does not have 3 matching in a row' do
       it 'returns false' do
         tictactoe = TicTacToe.new
-        tictactoe.plays = [[1, 2, 3], [4, 5, 9]]
+        @@plays = [[1, 2, 3], [4, 5, 9]]
         expect(tictactoe.check(1)).to eql(false)
       end
     end
@@ -23,7 +23,7 @@ describe TicTacToe do
   describe '#win' do
     it 'returns win message for the player who wins' do
       tictactoe = TicTacToe.new
-      tictactoe.names = %w[Clifton Terezie]
+      @@names = %w[Clifton Terezie]
       expect(tictactoe.win(1)).to eql("***Congrats, Terezie. You WON!!!***\n")
     end
   end

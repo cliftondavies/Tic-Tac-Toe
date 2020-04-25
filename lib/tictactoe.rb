@@ -6,21 +6,19 @@ class TicTacToe
   attr_accessor :plays, :names
 
   def initialize
-    @plays = Player.list_plays
-    @names = Player.list_names
     @outcome = 'draw'
   end
 
   def check(player_no)
     WIN.any? do |item|
-      union = item & @plays[player_no]
+      union = item & Player.list_plays[player_no]
       union.size == 3
     end
   end
 
   def win(player_no)
     @outcome = 'win'
-    message = "***Congrats, #{@names[player_no]}. You WON!!!***\n"
+    message = "***Congrats, #{Player.list_names[player_no]}. You WON!!!***\n"
     message
   end
 end

@@ -1,7 +1,7 @@
 # rubocop:disable Style/ClassVars
 class Player
   attr_accessor :name
-  attr_reader :values
+  attr_reader :values, :names, :plays
 
   @@names = []
   @@plays = []
