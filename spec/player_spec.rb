@@ -14,4 +14,11 @@ describe Player do
       expect(Player.list_plays).to eql([[1, 2, 3], [4, 5, 9]])
     end
   end
+
+  describe '.reset' do
+    it 'clears all data about the players' do
+      Player.reset
+      expect(@@names).to eql([])
+    end
+  end
 end
