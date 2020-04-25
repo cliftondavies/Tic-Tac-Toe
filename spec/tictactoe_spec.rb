@@ -1,30 +1,43 @@
 require './lib/tictactoe.rb'
 require './lib/player.rb'
+# rubocop:disable Style/ClassVars
 
 describe TicTacToe do
+  subject { TicTacToe.new }
+
   describe '#check' do
+    let(:player1_plays) { [1, 2, 3] }
+    let(:player2_plays) { [4, 5, 9] }
+
     context 'when a player has 3 matching in a row' do
+      let(:player_no) { 0 }
+
       it 'returns true' do
-        tictactoe = TicTacToe.new
-        @@plays = [[1, 2, 3], [4, 5, 9]]
-        expect(tictactoe.check?(0)).to eql(true)
+        @@plays = [player1_plays, player2_plays]
+        is_expected.to be_check(player_no)
       end
     end
 
     context 'when a player does not have 3 matching in a row' do
+      let(:player_no) { 1 }
+
       it 'returns false' do
-        tictactoe = TicTacToe.new
-        @@plays = [[1, 2, 3], [4, 5, 9]]
-        expect(tictactoe.check?(1)).to eql(false)
+        @@plays = [player1_plays, player2_plays]
+        is_expected.not_to be_check(player_no)
       end
     end
   end
 
   describe '#win' do
+    let(:player_no) { 1 }
+    let(:player1_name) { 'Clifton' }
+    let(:player2_name) { 'Terezie' }
+
     it 'returns win message for the player who wins' do
-      tictactoe = TicTacToe.new
-      @@names = %w[Clifton Terezie]
-      expect(tictactoe.win(1)).to eql("***Congrats, Terezie. You WON!!!***\n")
+      @@names = [player1_name, player2_name]
+      expect(subject.win(player_no)).to eql("***Congrats, Terezie. You WON!!!***\n")
     end
   end
 end
+
+# rubocop:enable Style/ClassVars
