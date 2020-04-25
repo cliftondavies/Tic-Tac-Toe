@@ -3,18 +3,18 @@ require './lib/player.rb'
 
 describe TicTacToe do
   describe '#check' do
-    context 'when player has 3 in a row' do
+    context 'when a player has 3 matching in a row' do
       it 'returns true' do
         tictactoe = TicTacToe.new
+        tictactoe.plays = [[1, 2, 3], [4, 5, 9]]
         expect(tictactoe.check(0)).to eql(true)
-        expect(tictactoe.check(1)).to eql(true)
       end
     end
 
-    context 'when player does not have 3 in a row' do
+    context 'when a player does not have 3 matching in a row' do
       it 'returns false' do
         tictactoe = TicTacToe.new
-        expect(tictactoe.check(0)).to eql(false)
+        tictactoe.plays = [[1, 2, 3], [4, 5, 9]]
         expect(tictactoe.check(1)).to eql(false)
       end
     end

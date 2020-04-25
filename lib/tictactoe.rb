@@ -3,14 +3,16 @@ class TicTacToe
          [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]].freeze
 
   attr_reader :outcome
+  attr_accessor :plays
 
   def initialize
+    @plays = Player.list_plays
     @outcome = 'draw'
   end
 
   def check(player_no)
     WIN.any? do |item|
-      union = item & Player.list_plays[player_no]
+      union = item & @plays[player_no]
       union.size == 3
     end
   end
