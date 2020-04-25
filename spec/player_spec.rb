@@ -21,4 +21,12 @@ describe Player do
       expect(@@names).to eql([])
     end
   end
+
+  describe '#play' do
+    it 'stores the moves made by a particular player' do
+      player = Player.new('Clifton')
+      player.play(2)
+      expect(player.values).to eql([2])
+    end
+  end
 end
