@@ -9,7 +9,7 @@ class TicTacToe
     @outcome = 'draw'
   end
 
-  def check(player_no)
+  def check?(player_no)
     WIN.any? do |item|
       union = item & Player.list_plays[player_no]
       union.size == 3

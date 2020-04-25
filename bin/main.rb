@@ -72,7 +72,7 @@ loop do
       puts "|    #{board.position[7]}    |    #{board.position[8]}    |    #{board.position[9]}    |"
       puts '-------------------------------
       '
-      puts game.win(player_no) if no_of_moves >= 2 && game.check(player_no)
+      puts game.win(player_no) if no_of_moves >= 2 && game.check?(player_no)
       break if game.outcome == 'win' || no_of_moves == 8
 
       no_of_moves += 1

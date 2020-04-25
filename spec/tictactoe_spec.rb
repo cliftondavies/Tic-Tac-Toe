@@ -7,7 +7,7 @@ describe TicTacToe do
       it 'returns true' do
         tictactoe = TicTacToe.new
         @@plays = [[1, 2, 3], [4, 5, 9]]
-        expect(tictactoe.check(0)).to eql(true)
+        expect(tictactoe.check?(0)).to eql(true)
       end
     end
 
@@ -15,7 +15,7 @@ describe TicTacToe do
       it 'returns false' do
         tictactoe = TicTacToe.new
         @@plays = [[1, 2, 3], [4, 5, 9]]
-        expect(tictactoe.check(1)).to eql(false)
+        expect(tictactoe.check?(1)).to eql(false)
       end
     end
   end
