@@ -20,7 +20,11 @@ describe TicTacToe do
     end
   end
 
-  # describe '#win' do
-  #   #
-  # end
+  describe '#win' do
+    it 'returns win message for the player who wins' do
+      tictactoe = TicTacToe.new
+      tictactoe.names = %w[Clifton Terezie]
+      expect(tictactoe.win(1)).to eql("***Congrats, Terezie. You WON!!!***\n")
+    end
+  end
 end

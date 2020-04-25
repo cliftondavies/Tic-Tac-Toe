@@ -3,10 +3,11 @@ class TicTacToe
          [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]].freeze
 
   attr_reader :outcome
-  attr_accessor :plays
+  attr_accessor :plays, :names
 
   def initialize
     @plays = Player.list_plays
+    @names = Player.list_names
     @outcome = 'draw'
   end
 
@@ -19,7 +20,7 @@ class TicTacToe
 
   def win(player_no)
     @outcome = 'win'
-    message = "***Congrats, #{Player.list_names[player_no]}. You WON!!!***\n"
+    message = "***Congrats, #{@names[player_no]}. You WON!!!***\n"
     message
   end
 end
