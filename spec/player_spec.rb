@@ -29,6 +29,15 @@ describe Player do
     end
   end
 
+  describe '#name' do
+    let(:name) { 'Clifton' }
+
+    it 'gets the name of a player object' do
+      player = Player.new(name)
+      expect(player.name).to eql(name)
+    end
+  end
+
   describe '#play' do
     let(:name) { 'Clifton' }
     let(:value) { 2 }
