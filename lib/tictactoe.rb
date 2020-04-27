@@ -18,7 +18,6 @@ class TicTacToe
 
   def win(player_no)
     @outcome = 'win'
-    message = "***Congrats, #{Player.list_names[player_no]}. You WON!!!***\n"
-    message
+    "***Congrats, #{Player.list_names[player_no]}. You WON!!!***\n"
   end
 end
