@@ -3,7 +3,6 @@ class TicTacToe
          [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]].freeze
 
   attr_reader :outcome
-  attr_accessor :plays, :names
 
   def initialize
     @outcome = 'draw'
