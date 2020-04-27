@@ -3,6 +3,12 @@ require './lib/board.rb'
 describe Board do
   subject { Board.new }
 
+  describe '#position' do
+    it 'returns the board object as a Hash' do
+      expect(subject.position.is_a?(Hash)).to eql(true)
+    end
+  end
+
   describe '#update' do
     let(:value) { 1 }
 

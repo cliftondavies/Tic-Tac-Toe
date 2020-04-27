@@ -40,7 +40,7 @@ describe Player do
   end
 
   describe '#play' do
-    it 'stores the moves made by a particular player' do
+    it 'stores the move made by a particular player' do
       subject.play(value)
       expect(subject.values).to include(value)
     end
