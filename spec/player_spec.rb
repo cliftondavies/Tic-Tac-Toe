@@ -29,32 +29,27 @@ describe Player do
     end
   end
 
-  describe '#name' do
-    let(:name) { 'Clifton' }
+  subject { Player.new(name) }
+  let(:name) { 'Clifton' }
+  let(:value) { 2 }
 
+  describe '#name' do
     it 'gets the name of a player object' do
-      player = Player.new(name)
-      expect(player.name).to eql(name)
+      expect(subject.name).to eql(name)
     end
   end
 
   describe '#play' do
-    let(:name) { 'Clifton' }
-    let(:value) { 2 }
-
     it 'stores the moves made by a particular player' do
-      player = Player.new(name)
-      player.play(value)
-      expect(player.values).to include(value)
+      subject.play(value)
+      expect(subject.values).to include(value)
     end
   end
 
   describe '#values' do
-    let(:name) { 'Clifton' }
-
     it 'gets the values stored for a particular player' do
-      player = Player.new(name)
-      expect(player.values.empty?).to be(true)
+      3.times { subject.play(value) }
+      expect(subject.values.size).to eql(3)
     end
   end
 end
