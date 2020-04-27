@@ -48,6 +48,15 @@ describe Player do
       expect(player.values).to include(value)
     end
   end
+
+  describe '#values' do
+    let(:name) { 'Clifton' }
+
+    it 'gets the values stored for a particular player' do
+      player = Player.new(name)
+      expect(player.values.empty?).to be(true)
+    end
+  end
 end
 
 # rubocop:enable Style/ClassVars
