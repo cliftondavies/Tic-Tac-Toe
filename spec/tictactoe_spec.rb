@@ -38,6 +38,23 @@ describe TicTacToe do
       expect(subject.win(player_no)).to eql("***Congrats, Terezie. You WON!!!***\n")
     end
   end
+
+  describe '#outcome' do
+    context 'when the game has not been won' do
+      it "returns a 'draw'" do
+        expect(subject.outcome).to start_with('d')
+      end
+    end
+
+    context 'when the game has been won' do
+      let(:player_no) { 0 }
+
+      it "returns a 'win'" do
+        subject.win(0)
+        expect(subject.outcome).to start_with('w')
+      end
+    end
+  end
 end
 
 # rubocop:enable Style/ClassVars
