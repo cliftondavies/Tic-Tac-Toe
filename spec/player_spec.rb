@@ -49,7 +49,7 @@ describe Player do
   describe '#values' do
     it 'gets the values stored for a particular player' do
       3.times { subject.play(value) }
-      expect(subject.values.size).to eql(3)
+      expect(subject.values).to eql([2, 2, 2])
     end
   end
 end
