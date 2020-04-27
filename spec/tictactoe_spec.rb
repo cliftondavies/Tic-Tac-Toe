@@ -50,7 +50,7 @@ describe TicTacToe do
       let(:player_no) { 0 }
 
       it "returns a 'win'" do
-        subject.win(0)
+        subject.win(player_no)
         expect(subject.outcome).to start_with('w')
       end
     end
