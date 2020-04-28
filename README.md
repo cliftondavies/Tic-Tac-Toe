@@ -34,6 +34,7 @@ bin/main.rb
 ## :toolbox: Tools & Technologies Used
 
 - Ruby
+- RSpec
 - Git/GitHub
 - Visual Studio Code
 

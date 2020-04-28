@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 # rubocop:disable Metrics/BlockLength
 
-require_relative '../lib/tictactoe.rb'
-require_relative '../lib/board.rb'
-require_relative '../lib/player.rb'
+require './lib/tictactoe.rb'
+require './lib/board.rb'
+require './lib/player.rb'
 
 loop do
   # Initialize Game
@@ -72,7 +72,7 @@ loop do
       puts "|    #{board.position[7]}    |    #{board.position[8]}    |    #{board.position[9]}    |"
       puts '-------------------------------
       '
-      puts game.win(player_no) if no_of_moves >= 2 && game.check(player_no)
+      puts game.win(player_no) if no_of_moves >= 2 && game.check?(player_no)
       break if game.outcome == 'win' || no_of_moves == 8
 
       no_of_moves += 1
